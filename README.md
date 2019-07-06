@@ -10,10 +10,10 @@ the graded one by one and equal seeding worked well rather than batch querying.
 This repository contains report,codes python conda environment as an .yml file and GUI interface package.
 # Setting up the GUI:
 
-'''
+```
 npn install vue
 sudo apt install nodejs-legacy
-'''
+```
 
 # Steps for running the code:
 The codes in this project can be run by setting up a python environment rnd_env.yml by running the following code in the terminal  directory.
