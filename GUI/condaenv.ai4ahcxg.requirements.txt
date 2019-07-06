@@ -1,0 +1,8 @@
+spacy==2.0.12
+matplotlib==2.2.2
+modal==0.3.0
+msgpack==0.5.6
+msgpack-numpy==0.4.4.1
+pandas==0.23.4
+pyparsing==2.2.0
+textblob==0.15.1

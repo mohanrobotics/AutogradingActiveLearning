@@ -17,12 +17,10 @@ from modAL.models import ActiveLearner
 from modAL.models import ActiveLearner
 from modAL.uncertainty import uncertainty_sampling,margin_sampling,entropy_sampling
 from modAL.disagreement import vote_entropy_sampling,max_disagreement_sampling,consensus_entropy_sampling
-import en_core_web_sm
 import json
 import os
 import pickle as pkl
 
-nlp = en_core_web_sm.load()
 
 def warn(*args, **kwargs):
 	pass
