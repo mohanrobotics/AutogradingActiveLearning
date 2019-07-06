@@ -18,19 +18,19 @@ sudo apt install nodejs-legacy
 # Steps for running the code:
 The codes in this project can be run by setting up a python environment rnd_env.yml by running the following code in the terminal  directory.
 
-'''
+```
 conda env create -f rnd_env.yml
 conda activate rnd_env
-'''
-'''
+```
+```
 cd ./GUI/node-server/
 node server.js
-'''
-'''
+```
+```
 cd ./GUI/
 conda activate rnd_env
 python3 auto_grader.py 
-'''
+```
 
 Note: place the autograded folder from NBgrader in the same directory where auto_grader.py is located. Also can change the directory in grader.py
 where the autograded folder of nbgrader is located.
