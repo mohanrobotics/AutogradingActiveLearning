@@ -1,0 +1,1181 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{binary\_al}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}1}]:} \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+        \PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k}{as} \PY{n+nn}{pd}
+        \PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{pyplot} \PY{k}{as} \PY{n+nn}{plt}
+        
+        \PY{k+kn}{from} \PY{n+nn}{nltk}\PY{n+nn}{.}\PY{n+nn}{corpus} \PY{k}{import} \PY{n}{stopwords}
+        \PY{k+kn}{from} \PY{n+nn}{nltk}\PY{n+nn}{.}\PY{n+nn}{stem} \PY{k}{import} \PY{n}{PorterStemmer}
+        \PY{k+kn}{from} \PY{n+nn}{nltk}\PY{n+nn}{.}\PY{n+nn}{tokenize} \PY{k}{import} \PY{n}{word\PYZus{}tokenize}
+        \PY{k+kn}{from} \PY{n+nn}{textblob} \PY{k}{import} \PY{n}{Word}
+        \PY{k+kn}{from} \PY{n+nn}{textblob} \PY{k}{import} \PY{n}{TextBlob}
+        
+        \PY{k+kn}{from} \PY{n+nn}{collections} \PY{k}{import} \PY{n}{Counter}
+        \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{model\PYZus{}selection} \PY{k}{import} \PY{n}{train\PYZus{}test\PYZus{}split}
+        \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{feature\PYZus{}extraction}\PY{n+nn}{.}\PY{n+nn}{text} \PY{k}{import} \PY{n}{CountVectorizer}
+        \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{linear\PYZus{}model} \PY{k}{import} \PY{n}{LogisticRegression}
+        
+        \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{decomposition} \PY{k}{import} \PY{n}{PCA}
+        \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{datasets} \PY{k}{import} \PY{n}{load\PYZus{}iris}
+        \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{neighbors} \PY{k}{import} \PY{n}{KNeighborsClassifier}
+        \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{ensemble} \PY{k}{import} \PY{n}{RandomForestClassifier}
+        
+        \PY{k+kn}{from} \PY{n+nn}{modAL}\PY{n+nn}{.}\PY{n+nn}{models} \PY{k}{import} \PY{n}{ActiveLearner}
+        \PY{k+kn}{from} \PY{n+nn}{modAL}\PY{n+nn}{.}\PY{n+nn}{models} \PY{k}{import} \PY{n}{ActiveLearner}
+        
+        \PY{k+kn}{import} \PY{n+nn}{en\PYZus{}core\PYZus{}web\PYZus{}sm}
+        \PY{n}{nlp} \PY{o}{=} \PY{n}{en\PYZus{}core\PYZus{}web\PYZus{}sm}\PY{o}{.}\PY{n}{load}\PY{p}{(}\PY{p}{)}
+        
+        \PY{o}{\PYZpc{}}\PY{n}{matplotlib} \PY{n}{inline}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}2}]:} \PY{n}{original\PYZus{}data} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{../dataset/mohler1\PYZus{}cleaned.csv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}3}]:} \PY{n}{original\PYZus{}data} \PY{o}{=} \PY{n}{original\PYZus{}data}\PY{o}{.}\PY{n}{drop}\PY{p}{(}\PY{n}{labels}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Unnamed: 6}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}4}]:} \PY{n}{original\PYZus{}data}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}4}]:}      question\_id  grade stud\_id  \textbackslash{}
+        0            1.1    3.5     [6]   
+        1            1.1    5.0     [5]   
+        2            1.1    4.0     [8]   
+        3            1.1    5.0     [3]   
+        4            1.1    3.0     [4]   
+        5            1.1    2.0    [24]   
+        6            1.1    2.5     [9]   
+        7            1.1    5.0    [22]   
+        8            1.1    3.5    [23]   
+        9            1.1    5.0     [2]   
+        10           1.1    5.0    [29]   
+        11           1.1    5.0    [31]   
+        12           1.1    2.0    [12]   
+        13           1.1    4.5    [21]   
+        14           1.1    2.0    [13]   
+        15           1.1    4.5    [11]   
+        16           1.1    5.0    [17]   
+        17           1.1    2.0     [7]   
+        18           1.1    2.0    [10]   
+        19           1.1    2.5    [27]   
+        20           1.1    5.0    [20]   
+        21           1.1    5.0    [18]   
+        22           1.1    1.5    [19]   
+        23           1.1    2.5    [16]   
+        24           1.1    5.0    [26]   
+        25           1.1    2.0     [1]   
+        26           1.1    3.0    [28]   
+        27           1.1    3.0    [15]   
+        28           1.1    2.5    [14]   
+        29           1.2    3.5     [6]   
+        ..           {\ldots}    {\ldots}     {\ldots}   
+        581          3.6    3.5    [27]   
+        582          3.6    5.0    [25]   
+        583          3.6    5.0    [20]   
+        584          3.6    5.0    [18]   
+        585          3.6    4.5    [19]   
+        586          3.6    5.0    [30]   
+        587          3.6    5.0    [16]   
+        588          3.6    5.0    [26]   
+        589          3.6    5.0     [1]   
+        590          3.6    5.0    [28]   
+        591          3.6    5.0    [15]   
+        592          3.6    3.0    [14]   
+        593          3.7    5.0     [6]   
+        594          3.7    2.0     [5]   
+        595          3.7    5.0     [8]   
+        596          3.7    5.0     [3]   
+        597          3.7    5.0     [4]   
+        598          3.7    5.0    [24]   
+        599          3.7    4.0     [9]   
+        600          3.7    3.0    [22]   
+        601          3.7    4.5    [23]   
+        602          3.7    3.5     [2]   
+        603          3.7    5.0    [29]   
+        604          3.7    5.0    [31]   
+        605          3.7    0.0    [12]   
+        606          3.7    3.0    [21]   
+        607          3.7    3.5    [13]   
+        608          3.7    5.0    [11]   
+        609          3.7    5.0    [17]   
+        610          3.7    2.0     [7]   
+        
+                                                      question  \textbackslash{}
+        0    What is the role of a prototype program in pro{\ldots}   
+        1    What is the role of a prototype program in pro{\ldots}   
+        2    What is the role of a prototype program in pro{\ldots}   
+        3    What is the role of a prototype program in pro{\ldots}   
+        4    What is the role of a prototype program in pro{\ldots}   
+        5    What is the role of a prototype program in pro{\ldots}   
+        6    What is the role of a prototype program in pro{\ldots}   
+        7    What is the role of a prototype program in pro{\ldots}   
+        8    What is the role of a prototype program in pro{\ldots}   
+        9    What is the role of a prototype program in pro{\ldots}   
+        10   What is the role of a prototype program in pro{\ldots}   
+        11   What is the role of a prototype program in pro{\ldots}   
+        12   What is the role of a prototype program in pro{\ldots}   
+        13   What is the role of a prototype program in pro{\ldots}   
+        14   What is the role of a prototype program in pro{\ldots}   
+        15   What is the role of a prototype program in pro{\ldots}   
+        16   What is the role of a prototype program in pro{\ldots}   
+        17   What is the role of a prototype program in pro{\ldots}   
+        18   What is the role of a prototype program in pro{\ldots}   
+        19   What is the role of a prototype program in pro{\ldots}   
+        20   What is the role of a prototype program in pro{\ldots}   
+        21   What is the role of a prototype program in pro{\ldots}   
+        22   What is the role of a prototype program in pro{\ldots}   
+        23   What is the role of a prototype program in pro{\ldots}   
+        24   What is the role of a prototype program in pro{\ldots}   
+        25   What is the role of a prototype program in pro{\ldots}   
+        26   What is the role of a prototype program in pro{\ldots}   
+        27   What is the role of a prototype program in pro{\ldots}   
+        28   What is the role of a prototype program in pro{\ldots}   
+        29   What stages in the software life cycle are inf{\ldots}   
+        ..                                                 {\ldots}   
+        581  When defining a recursive function, what are p{\ldots}   
+        582  When defining a recursive function, what are p{\ldots}   
+        583  When defining a recursive function, what are p{\ldots}   
+        584  When defining a recursive function, what are p{\ldots}   
+        585  When defining a recursive function, what are p{\ldots}   
+        586  When defining a recursive function, what are p{\ldots}   
+        587  When defining a recursive function, what are p{\ldots}   
+        588  When defining a recursive function, what are p{\ldots}   
+        589  When defining a recursive function, what are p{\ldots}   
+        590  When defining a recursive function, what are p{\ldots}   
+        591  When defining a recursive function, what are p{\ldots}   
+        592  When defining a recursive function, what are p{\ldots}   
+        593  What are the similarities between iteration an{\ldots}   
+        594  What are the similarities between iteration an{\ldots}   
+        595  What are the similarities between iteration an{\ldots}   
+        596  What are the similarities between iteration an{\ldots}   
+        597  What are the similarities between iteration an{\ldots}   
+        598  What are the similarities between iteration an{\ldots}   
+        599  What are the similarities between iteration an{\ldots}   
+        600  What are the similarities between iteration an{\ldots}   
+        601  What are the similarities between iteration an{\ldots}   
+        602  What are the similarities between iteration an{\ldots}   
+        603  What are the similarities between iteration an{\ldots}   
+        604  What are the similarities between iteration an{\ldots}   
+        605  What are the similarities between iteration an{\ldots}   
+        606  What are the similarities between iteration an{\ldots}   
+        607  What are the similarities between iteration an{\ldots}   
+        608  What are the similarities between iteration an{\ldots}   
+        609  What are the similarities between iteration an{\ldots}   
+        610  What are the similarities between iteration an{\ldots}   
+        
+                                                    ref\_answer  \textbackslash{}
+        0    To simulate the behaviour of portions of the d{\ldots}   
+        1    To simulate the behaviour of portions of the d{\ldots}   
+        2    To simulate the behaviour of portions of the d{\ldots}   
+        3    To simulate the behaviour of portions of the d{\ldots}   
+        4    To simulate the behaviour of portions of the d{\ldots}   
+        5    To simulate the behaviour of portions of the d{\ldots}   
+        6    To simulate the behaviour of portions of the d{\ldots}   
+        7    To simulate the behaviour of portions of the d{\ldots}   
+        8    To simulate the behaviour of portions of the d{\ldots}   
+        9    To simulate the behaviour of portions of the d{\ldots}   
+        10   To simulate the behaviour of portions of the d{\ldots}   
+        11   To simulate the behaviour of portions of the d{\ldots}   
+        12   To simulate the behaviour of portions of the d{\ldots}   
+        13   To simulate the behaviour of portions of the d{\ldots}   
+        14   To simulate the behaviour of portions of the d{\ldots}   
+        15   To simulate the behaviour of portions of the d{\ldots}   
+        16   To simulate the behaviour of portions of the d{\ldots}   
+        17   To simulate the behaviour of portions of the d{\ldots}   
+        18   To simulate the behaviour of portions of the d{\ldots}   
+        19   To simulate the behaviour of portions of the d{\ldots}   
+        20   To simulate the behaviour of portions of the d{\ldots}   
+        21   To simulate the behaviour of portions of the d{\ldots}   
+        22   To simulate the behaviour of portions of the d{\ldots}   
+        23   To simulate the behaviour of portions of the d{\ldots}   
+        24   To simulate the behaviour of portions of the d{\ldots}   
+        25   To simulate the behaviour of portions of the d{\ldots}   
+        26   To simulate the behaviour of portions of the d{\ldots}   
+        27   To simulate the behaviour of portions of the d{\ldots}   
+        28   To simulate the behaviour of portions of the d{\ldots}   
+        29   The testing stage can influence both the codin{\ldots}   
+        ..                                                 {\ldots}   
+        581  If the recursion step is defined incorrectly, {\ldots}   
+        582  If the recursion step is defined incorrectly, {\ldots}   
+        583  If the recursion step is defined incorrectly, {\ldots}   
+        584  If the recursion step is defined incorrectly, {\ldots}   
+        585  If the recursion step is defined incorrectly, {\ldots}   
+        586  If the recursion step is defined incorrectly, {\ldots}   
+        587  If the recursion step is defined incorrectly, {\ldots}   
+        588  If the recursion step is defined incorrectly, {\ldots}   
+        589  If the recursion step is defined incorrectly, {\ldots}   
+        590  If the recursion step is defined incorrectly, {\ldots}   
+        591  If the recursion step is defined incorrectly, {\ldots}   
+        592  If the recursion step is defined incorrectly, {\ldots}   
+        593                       They both involve repetition   
+        594                       They both involve repetition   
+        595                       They both involve repetition   
+        596                       They both involve repetition   
+        597                       They both involve repetition   
+        598                       They both involve repetition   
+        599                       They both involve repetition   
+        600                       They both involve repetition   
+        601                       They both involve repetition   
+        602                       They both involve repetition   
+        603                       They both involve repetition   
+        604                       They both involve repetition   
+        605                       They both involve repetition   
+        606                       They both involve repetition   
+        607                       They both involve repetition   
+        608                       They both involve repetition   
+        609                       They both involve repetition   
+        610                       They both involve repetition   
+        
+                                                student\_answer  
+        0    High risk problems are address in the prototyp{\ldots}  
+        1    To simulate portions of the desired final prod{\ldots}  
+        2    A prototype program simulates the behaviors of{\ldots}  
+        3    Defined in the Specification phase a prototype{\ldots}  
+        4    It is used to let the users have a first idea {\ldots}  
+        5    To find problem and errors in a program before{\ldots}  
+        6    To address major issues in the creation of the{\ldots}  
+        7    you can break the whole program into prototype{\ldots}  
+        8    -To provide an example or model of how the fin{\ldots}  
+        9    Simulating the behavior of only a portion of t{\ldots}  
+        10     A program that stimulates the behavior of po{\ldots}  
+        11   A program that simulates the behavior of porti{\ldots}  
+        12   To lay out the basics and give you a starting {\ldots}  
+        13   To simulate problem solving for parts of the p{\ldots}  
+        14   A prototype program provides a basic groundwor{\ldots}  
+        15   A prototype program is a part of the Specifica{\ldots}  
+        16   Program that simulates the behavior of portion{\ldots}  
+        17   it provides a limited proof of concept to veri{\ldots}  
+        18   It tests the main function of the program whil{\ldots}  
+        19   To get early feedback from users in early stag{\ldots}  
+        20   it simulates the behavior of portions of the d{\ldots}  
+        21   It simulates the behavior of portions of the d{\ldots}  
+        22   A prototype program is used in problem solving{\ldots}  
+        23   To ease the understanding of problem under dis{\ldots}  
+        24   it simulates the behavior of portions of the d{\ldots}  
+        25   The role of a prototype program is to help spo{\ldots}  
+        26   the prototype program gives a general idea of {\ldots}  
+        27   to show that a certain part of the program wor{\ldots}  
+        28   Prototype programming is an approach to progra{\ldots}  
+        29   Refining and possibly the design if the testin{\ldots}  
+        ..                                                 {\ldots}  
+        581  no base case, as in a single return that does {\ldots}  
+        582  Either omitting the base case, or writing the {\ldots}  
+        583  omitting the base case or writing the recursiv{\ldots}  
+        584  Either omitting the base case, or writing the {\ldots}  
+        585  Infinite recursion may occur if no base case i{\ldots}  
+        586  Not having a base case, or building a recursio{\ldots}  
+        587  Either omitting the base case, or writing the {\ldots}  
+        588  no base case<br>or if the programmar does not {\ldots}  
+        589  No easily reached base case and no base case a{\ldots}  
+        590  function is never allowed to reach the 'base c{\ldots}  
+        591  it has no base case, or the base case is never{\ldots}  
+        592  recursion refers to situations in which functi{\ldots}  
+        593  Both involve a controlled repetition structure{\ldots}  
+        594  As discussed earlier, recursion may be used to{\ldots}  
+        595  Both iteration and recursion are based on cont{\ldots}  
+        596  Both are based on a control statement<br>     {\ldots}  
+        597  Iteration and recursion have many similarities{\ldots}  
+        598  Both rely on repetition, both have a base case{\ldots}  
+        599  Both will repeat (loop) until a condition is m{\ldots}  
+        600  anything you can do iterativly you can do recu{\ldots}  
+        601      Both are repetative and both have a end test.  
+        602  Incorrectly writing either can result in infin{\ldots}  
+        603  Both are based on a control statement.<br>Both{\ldots}  
+        604  Both are based on a control statement, Both in{\ldots}  
+        605                                       not answered  
+        606  anything you can do recursively you can do ite{\ldots}  
+        607  Many problems can be solved by both iteration {\ldots}  
+        608  Iteration and recursion both use repetition an{\ldots}  
+        609  both based on control statement, involve repet{\ldots}  
+        610       they are methods of repeating the same task.  
+        
+        [611 rows x 6 columns]
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}5}]:} \PY{n}{short\PYZus{}df} \PY{o}{=} \PY{n}{original\PYZus{}data}\PY{p}{[}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{student\PYZus{}answer}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{grade}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{question}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}
+        \PY{n}{short\PYZus{}df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{status}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{short\PYZus{}df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{grade}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{\PYZgt{}}\PY{o}{=} \PY{l+m+mi}{3}
+        \PY{n}{short\PYZus{}df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{status}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{short\PYZus{}df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{status}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{astype}\PY{p}{(}\PY{n+nb}{int}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+/home/black-book/anaconda3/envs/rnd/lib/python3.6/site-packages/ipykernel\_launcher.py:2: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row\_indexer,col\_indexer] = value instead
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html\#indexing-view-versus-copy
+  
+/home/black-book/anaconda3/envs/rnd/lib/python3.6/site-packages/ipykernel\_launcher.py:3: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row\_indexer,col\_indexer] = value instead
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html\#indexing-view-versus-copy
+  This is separate from the ipykernel package so we can avoid doing imports until
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}6}]:} \PY{n}{short\PYZus{}df}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}6}]:}                                         student\_answer  grade  \textbackslash{}
+        0    High risk problems are address in the prototyp{\ldots}    3.5   
+        1    To simulate portions of the desired final prod{\ldots}    5.0   
+        2    A prototype program simulates the behaviors of{\ldots}    4.0   
+        3    Defined in the Specification phase a prototype{\ldots}    5.0   
+        4    It is used to let the users have a first idea {\ldots}    3.0   
+        5    To find problem and errors in a program before{\ldots}    2.0   
+        6    To address major issues in the creation of the{\ldots}    2.5   
+        7    you can break the whole program into prototype{\ldots}    5.0   
+        8    -To provide an example or model of how the fin{\ldots}    3.5   
+        9    Simulating the behavior of only a portion of t{\ldots}    5.0   
+        10     A program that stimulates the behavior of po{\ldots}    5.0   
+        11   A program that simulates the behavior of porti{\ldots}    5.0   
+        12   To lay out the basics and give you a starting {\ldots}    2.0   
+        13   To simulate problem solving for parts of the p{\ldots}    4.5   
+        14   A prototype program provides a basic groundwor{\ldots}    2.0   
+        15   A prototype program is a part of the Specifica{\ldots}    4.5   
+        16   Program that simulates the behavior of portion{\ldots}    5.0   
+        17   it provides a limited proof of concept to veri{\ldots}    2.0   
+        18   It tests the main function of the program whil{\ldots}    2.0   
+        19   To get early feedback from users in early stag{\ldots}    2.5   
+        20   it simulates the behavior of portions of the d{\ldots}    5.0   
+        21   It simulates the behavior of portions of the d{\ldots}    5.0   
+        22   A prototype program is used in problem solving{\ldots}    1.5   
+        23   To ease the understanding of problem under dis{\ldots}    2.5   
+        24   it simulates the behavior of portions of the d{\ldots}    5.0   
+        25   The role of a prototype program is to help spo{\ldots}    2.0   
+        26   the prototype program gives a general idea of {\ldots}    3.0   
+        27   to show that a certain part of the program wor{\ldots}    3.0   
+        28   Prototype programming is an approach to progra{\ldots}    2.5   
+        29   Refining and possibly the design if the testin{\ldots}    3.5   
+        ..                                                 {\ldots}    {\ldots}   
+        581  no base case, as in a single return that does {\ldots}    3.5   
+        582  Either omitting the base case, or writing the {\ldots}    5.0   
+        583  omitting the base case or writing the recursiv{\ldots}    5.0   
+        584  Either omitting the base case, or writing the {\ldots}    5.0   
+        585  Infinite recursion may occur if no base case i{\ldots}    4.5   
+        586  Not having a base case, or building a recursio{\ldots}    5.0   
+        587  Either omitting the base case, or writing the {\ldots}    5.0   
+        588  no base case<br>or if the programmar does not {\ldots}    5.0   
+        589  No easily reached base case and no base case a{\ldots}    5.0   
+        590  function is never allowed to reach the 'base c{\ldots}    5.0   
+        591  it has no base case, or the base case is never{\ldots}    5.0   
+        592  recursion refers to situations in which functi{\ldots}    3.0   
+        593  Both involve a controlled repetition structure{\ldots}    5.0   
+        594  As discussed earlier, recursion may be used to{\ldots}    2.0   
+        595  Both iteration and recursion are based on cont{\ldots}    5.0   
+        596  Both are based on a control statement<br>     {\ldots}    5.0   
+        597  Iteration and recursion have many similarities{\ldots}    5.0   
+        598  Both rely on repetition, both have a base case{\ldots}    5.0   
+        599  Both will repeat (loop) until a condition is m{\ldots}    4.0   
+        600  anything you can do iterativly you can do recu{\ldots}    3.0   
+        601      Both are repetative and both have a end test.    4.5   
+        602  Incorrectly writing either can result in infin{\ldots}    3.5   
+        603  Both are based on a control statement.<br>Both{\ldots}    5.0   
+        604  Both are based on a control statement, Both in{\ldots}    5.0   
+        605                                       not answered    0.0   
+        606  anything you can do recursively you can do ite{\ldots}    3.0   
+        607  Many problems can be solved by both iteration {\ldots}    3.5   
+        608  Iteration and recursion both use repetition an{\ldots}    5.0   
+        609  both based on control statement, involve repet{\ldots}    5.0   
+        610       they are methods of repeating the same task.    2.0   
+        
+                                                      question  status  
+        0    What is the role of a prototype program in pro{\ldots}       1  
+        1    What is the role of a prototype program in pro{\ldots}       1  
+        2    What is the role of a prototype program in pro{\ldots}       1  
+        3    What is the role of a prototype program in pro{\ldots}       1  
+        4    What is the role of a prototype program in pro{\ldots}       1  
+        5    What is the role of a prototype program in pro{\ldots}       0  
+        6    What is the role of a prototype program in pro{\ldots}       0  
+        7    What is the role of a prototype program in pro{\ldots}       1  
+        8    What is the role of a prototype program in pro{\ldots}       1  
+        9    What is the role of a prototype program in pro{\ldots}       1  
+        10   What is the role of a prototype program in pro{\ldots}       1  
+        11   What is the role of a prototype program in pro{\ldots}       1  
+        12   What is the role of a prototype program in pro{\ldots}       0  
+        13   What is the role of a prototype program in pro{\ldots}       1  
+        14   What is the role of a prototype program in pro{\ldots}       0  
+        15   What is the role of a prototype program in pro{\ldots}       1  
+        16   What is the role of a prototype program in pro{\ldots}       1  
+        17   What is the role of a prototype program in pro{\ldots}       0  
+        18   What is the role of a prototype program in pro{\ldots}       0  
+        19   What is the role of a prototype program in pro{\ldots}       0  
+        20   What is the role of a prototype program in pro{\ldots}       1  
+        21   What is the role of a prototype program in pro{\ldots}       1  
+        22   What is the role of a prototype program in pro{\ldots}       0  
+        23   What is the role of a prototype program in pro{\ldots}       0  
+        24   What is the role of a prototype program in pro{\ldots}       1  
+        25   What is the role of a prototype program in pro{\ldots}       0  
+        26   What is the role of a prototype program in pro{\ldots}       1  
+        27   What is the role of a prototype program in pro{\ldots}       1  
+        28   What is the role of a prototype program in pro{\ldots}       0  
+        29   What stages in the software life cycle are inf{\ldots}       1  
+        ..                                                 {\ldots}     {\ldots}  
+        581  When defining a recursive function, what are p{\ldots}       1  
+        582  When defining a recursive function, what are p{\ldots}       1  
+        583  When defining a recursive function, what are p{\ldots}       1  
+        584  When defining a recursive function, what are p{\ldots}       1  
+        585  When defining a recursive function, what are p{\ldots}       1  
+        586  When defining a recursive function, what are p{\ldots}       1  
+        587  When defining a recursive function, what are p{\ldots}       1  
+        588  When defining a recursive function, what are p{\ldots}       1  
+        589  When defining a recursive function, what are p{\ldots}       1  
+        590  When defining a recursive function, what are p{\ldots}       1  
+        591  When defining a recursive function, what are p{\ldots}       1  
+        592  When defining a recursive function, what are p{\ldots}       1  
+        593  What are the similarities between iteration an{\ldots}       1  
+        594  What are the similarities between iteration an{\ldots}       0  
+        595  What are the similarities between iteration an{\ldots}       1  
+        596  What are the similarities between iteration an{\ldots}       1  
+        597  What are the similarities between iteration an{\ldots}       1  
+        598  What are the similarities between iteration an{\ldots}       1  
+        599  What are the similarities between iteration an{\ldots}       1  
+        600  What are the similarities between iteration an{\ldots}       1  
+        601  What are the similarities between iteration an{\ldots}       1  
+        602  What are the similarities between iteration an{\ldots}       1  
+        603  What are the similarities between iteration an{\ldots}       1  
+        604  What are the similarities between iteration an{\ldots}       1  
+        605  What are the similarities between iteration an{\ldots}       0  
+        606  What are the similarities between iteration an{\ldots}       1  
+        607  What are the similarities between iteration an{\ldots}       1  
+        608  What are the similarities between iteration an{\ldots}       1  
+        609  What are the similarities between iteration an{\ldots}       1  
+        610  What are the similarities between iteration an{\ldots}       0  
+        
+        [611 rows x 4 columns]
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}7}]:} \PY{c+c1}{\PYZsh{} short\PYZus{}df[\PYZsq{}word\PYZus{}count\PYZsq{}] = short\PYZus{}df[\PYZsq{}student\PYZus{}answer\PYZsq{}].apply(lambda x: dict(Counter(x.split())))}
+        
+        \PY{c+c1}{\PYZsh{} counting unique words in every student\PYZsq{}s answer}
+        \PY{n}{CV} \PY{o}{=} \PY{n}{CountVectorizer}\PY{p}{(}\PY{p}{)}
+        \PY{n}{student\PYZus{}answer\PYZus{}count\PYZus{}vector} \PY{o}{=} \PY{n}{CV}\PY{o}{.}\PY{n}{fit\PYZus{}transform}\PY{p}{(}\PY{n}{short\PYZus{}df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{student\PYZus{}answer}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+        \PY{n}{student\PYZus{}answer\PYZus{}count\PYZus{}vector} \PY{o}{=} \PY{n}{student\PYZus{}answer\PYZus{}count\PYZus{}vector}\PY{o}{.}\PY{n}{toarray}\PY{p}{(}\PY{p}{)}
+        
+        \PY{n}{X} \PY{o}{=} \PY{n}{student\PYZus{}answer\PYZus{}count\PYZus{}vector}
+        \PY{n}{Y} \PY{o}{=} \PY{n}{short\PYZus{}df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{status}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{values}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}78}]:} \PY{n}{act\PYZus{}data} \PY{o}{=} \PY{n}{short\PYZus{}df}\PY{o}{.}\PY{n}{copy}\PY{p}{(}\PY{p}{)}
+         \PY{n}{accuracy\PYZus{}list} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+         
+         \PY{c+c1}{\PYZsh{} initialising}
+         \PY{n}{train\PYZus{}idx} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{,} \PY{l+m+mi}{6} \PY{p}{,}\PY{l+m+mi}{100}\PY{p}{]}
+         \PY{n}{X\PYZus{}train} \PY{o}{=} \PY{n}{X}\PY{p}{[}\PY{n}{train\PYZus{}idx}\PY{p}{]}
+         \PY{n}{y\PYZus{}train} \PY{o}{=} \PY{n}{Y}\PY{p}{[}\PY{n}{train\PYZus{}idx}\PY{p}{]}
+          
+         \PY{c+c1}{\PYZsh{} generating the pool}
+         \PY{n}{X\PYZus{}pool} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{delete}\PY{p}{(}\PY{n}{X}\PY{p}{,} \PY{n}{train\PYZus{}idx}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{)}
+         \PY{n}{y\PYZus{}pool} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{delete}\PY{p}{(}\PY{n}{Y}\PY{p}{,} \PY{n}{train\PYZus{}idx}\PY{p}{)}
+         
+         \PY{n}{act\PYZus{}data} \PY{o}{=} \PY{n}{act\PYZus{}data}\PY{o}{.}\PY{n}{drop}\PY{p}{(}\PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{,}\PY{n}{index} \PY{o}{=} \PY{n}{train\PYZus{}idx}\PY{p}{)}
+         \PY{n}{act\PYZus{}data}\PY{o}{.}\PY{n}{reset\PYZus{}index}\PY{p}{(}\PY{n}{drop} \PY{o}{=} \PY{k+kc}{True}\PY{p}{,}\PY{n}{inplace}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+         
+         
+         \PY{c+c1}{\PYZsh{} initializing the active learner}
+         \PY{n}{lr} \PY{o}{=} \PY{n}{LogisticRegression}\PY{p}{(}\PY{p}{)}
+         \PY{n}{learner} \PY{o}{=} \PY{n}{ActiveLearner}\PY{p}{(}
+             \PY{n}{estimator} \PY{o}{=} \PY{n}{lr}\PY{p}{,}
+         \PY{c+c1}{\PYZsh{}     estimator = RandomForestClassifier(n\PYZus{}estimators=5),}
+         \PY{c+c1}{\PYZsh{}     estimator=KNeighborsClassifier(n\PYZus{}neighbors=3),}
+             \PY{n}{X\PYZus{}training}\PY{o}{=}\PY{n}{X\PYZus{}train}\PY{p}{,} \PY{n}{y\PYZus{}training}\PY{o}{=}\PY{n}{y\PYZus{}train}
+         \PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} pool\PYZhy{}based sampling}
+         \PY{n}{n\PYZus{}queries} \PY{o}{=} \PY{l+m+mi}{40}
+         \PY{k}{for} \PY{n}{idx} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{n\PYZus{}queries}\PY{p}{)}\PY{p}{:}
+             \PY{n}{query\PYZus{}idx}\PY{p}{,} \PY{n}{query\PYZus{}instance} \PY{o}{=} \PY{n}{learner}\PY{o}{.}\PY{n}{query}\PY{p}{(}\PY{n}{X\PYZus{}pool}\PY{p}{)}
+             \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{Q: }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{act\PYZus{}data}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{n+nb}{int}\PY{p}{(}\PY{n}{query\PYZus{}idx}\PY{p}{)}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{question}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+             \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{A: }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{n}{act\PYZus{}data}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{n+nb}{int}\PY{p}{(}\PY{n}{query\PYZus{}idx}\PY{p}{)}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{student\PYZus{}answer}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+             \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Actual grade: }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{n}{y\PYZus{}pool}\PY{p}{[}\PY{n}{query\PYZus{}idx}\PY{p}{]}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{p}{)}\PY{p}{)}
+             \PY{n+nb}{print} \PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Class probabilities: }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{n}{learner}\PY{o}{.}\PY{n}{predict\PYZus{}proba}\PY{p}{(}\PY{n}{X\PYZus{}pool}\PY{p}{[}\PY{n}{query\PYZus{}idx}\PY{p}{]}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+             \PY{n}{human\PYZus{}label} \PY{o}{=} \PY{n+nb}{int}\PY{p}{(}\PY{n+nb}{input}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{Give me a grade 0 or 1:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{)}
+             \PY{n}{learner}\PY{o}{.}\PY{n}{teach}\PY{p}{(}
+                 \PY{n}{X}\PY{o}{=}\PY{n}{X\PYZus{}pool}\PY{p}{[}\PY{n}{query\PYZus{}idx}\PY{p}{]}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{,}
+                 \PY{n}{y}\PY{o}{=}\PY{p}{[}\PY{n}{human\PYZus{}label}\PY{p}{]}
+             \PY{p}{)}
+             
+             \PY{c+c1}{\PYZsh{} remove queried instance from pool}
+             \PY{n}{X\PYZus{}pool} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{delete}\PY{p}{(}\PY{n}{X\PYZus{}pool}\PY{p}{,} \PY{n}{query\PYZus{}idx}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{)}
+             \PY{n}{y\PYZus{}pool} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{delete}\PY{p}{(}\PY{n}{y\PYZus{}pool}\PY{p}{,} \PY{n}{query\PYZus{}idx}\PY{p}{)}
+             
+             \PY{n}{act\PYZus{}data} \PY{o}{=} \PY{n}{act\PYZus{}data}\PY{o}{.}\PY{n}{drop}\PY{p}{(}\PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{,}\PY{n}{index} \PY{o}{=} \PY{n}{query\PYZus{}idx}\PY{p}{)}
+             \PY{n}{act\PYZus{}data}\PY{o}{.}\PY{n}{reset\PYZus{}index}\PY{p}{(}\PY{n}{drop}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,} \PY{n}{inplace}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+             
+             \PY{n}{accuracy\PYZus{}list}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{learner}\PY{o}{.}\PY{n}{score}\PY{p}{(}\PY{n}{X}\PY{p}{,}\PY{n}{Y}\PY{p}{)}\PY{p}{)}
+             \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Accuracy after query no. }\PY{l+s+si}{\PYZpc{}d}\PY{l+s+s1}{: }\PY{l+s+si}{\PYZpc{}f}\PY{l+s+s1}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{p}{(}\PY{n}{idx}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{learner}\PY{o}{.}\PY{n}{score}\PY{p}{(}\PY{n}{X}\PY{p}{,} \PY{n}{Y}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+
+Q:  What is the main difference between a while and a do{\ldots}while statement?
+A:  a while statement will only process if the statement is met, while a do{\ldots}while will always process once, then only continue if the statement is met.
+Actual grade:  [1]
+Class probabilities:  [[0.49957 0.50043]]
+
+Give me a grade 0 or 1:1
+Accuracy after query no. 1: 0.780687
+
+Q:  Where are variables declared in a C++ program?
+A:  anywhere, but where you declare them depends on where you want them to be accessible (their scope)
+Actual grade:  [1]
+Class probabilities:  [[0.50011406 0.49988594]]
+
+Give me a grade 0 or 1:1
+Accuracy after query no. 2: 0.801964
+
+Q:  What is the scope of global variables?
+A:  global variables have program scope (accessible anywhere in program)
+Actual grade:  [1]
+Class probabilities:  [[0.49967804 0.50032196]]
+
+Give me a grade 0 or 1:1
+Accuracy after query no. 3: 0.798691
+
+Q:  When defining a recursive function, what are possible causes for infinite recursion?
+A:  it has no base case, or the base case is never met
+Actual grade:  [1]
+Class probabilities:  [[0.5012287 0.4987713]]
+
+Give me a grade 0 or 1:1
+Accuracy after query no. 4: 0.834697
+
+Q:  When does C++ create a default constructor?
+A:  when there is not one already for a specific class
+Actual grade:  [1]
+Class probabilities:  [[0.50174237 0.49825763]]
+
+Give me a grade 0 or 1:1
+Accuracy after query no. 5: 0.842881
+
+Q:   What are the main advantages associated with object-oriented programming?
+A:  Modularability, the ability to reuse parts of the program later in another program sometimes with completely different goals for the program. Also it makes it easier to debug code by dividing up the code into classes that each do a specific job and when the program fails at one job you only have one class to debug. Good for security purposes because it allows you to let someone use a program which sorts lists without having to give them access to the source code. ALso allows you to use inheritance and polymorphism.
+Actual grade:  [1]
+Class probabilities:  [[0.50640727 0.49359273]]
+
+Give me a grade 0 or 1:1
+Accuracy after query no. 6: 0.855974
+
+Q:   What are the main advantages associated with object-oriented programming?
+A:  Information can be hidden. It is easier to debug. Programming is easier and more manageable. 
+Actual grade:  [1]
+Class probabilities:  [[0.49945121 0.50054879]]
+
+Give me a grade 0 or 1:1
+Accuracy after query no. 7: 0.862520
+
+Q:  What is the role of a prototype program in problem solving?
+A:  To simulate problem solving for parts of the problem
+Actual grade:  [1]
+Class probabilities:  [[0.48579584 0.51420416]]
+
+Give me a grade 0 or 1:1
+Accuracy after query no. 8: 0.860884
+
+Q:  What is the role of a prototype program in problem solving?
+A:  A prototype program provides a basic groundwork from which to further enhance and improve a solution to a problem.
+Actual grade:  [0]
+Class probabilities:  [[0.41621675 0.58378325]]
+
+Give me a grade 0 or 1:0
+Accuracy after query no. 9: 0.860884
+
+Q:   What are the main advantages associated with object-oriented programming?
+A:  Data Abstraction and control{\ldots} it is possible to isolate elements<br>from other elements a lot easier and prevent tampering of data.<br>
+Actual grade:  [1]
+Class probabilities:  [[0.50964801 0.49035199]]
+
+Give me a grade 0 or 1:1
+Accuracy after query no. 10: 0.862520
+
+Q:  What is the role of a prototype program in problem solving?
+A:  To get early feedback from users in early stages of development.  To show users a first idea of what the program will do/look like.  To make sure the program will meet requirements before intense programming begins.
+Actual grade:  [0]
+Class probabilities:  [[0.43503968 0.56496032]]
+
+Give me a grade 0 or 1:0
+Accuracy after query no. 11: 0.864157
+
+Q:  What is the role of a prototype program in problem solving?
+A:  to show that a certain part of the program works as it is supposed to
+Actual grade:  [1]
+Class probabilities:  [[0.46958548 0.53041452]]
+
+Give me a grade 0 or 1:1
+Accuracy after query no. 12: 0.864157
+
+Q:  What is a variable?
+A:  A pointer to a location in memory.
+Actual grade:  [1]
+Class probabilities:  [[0.43039424 0.56960576]]
+
+Give me a grade 0 or 1:1
+Accuracy after query no. 13: 0.864157
+
+Q:  What is the main difference between a while and a do{\ldots}while statement?
+A:  While tests for true first before running, do{\ldots}while runs once first before checking.
+Actual grade:  [1]
+Class probabilities:  [[0.40029132 0.59970868]]
+
+Give me a grade 0 or 1:1
+Accuracy after query no. 14: 0.864157
+
+Q:  What is the role of a header-file?
+A:  A header file is a cross communication method between source files, to help limit the size of each individual program. Without header files a program will be 1 large lump of code and thus fairly hard to debug and traverse.
+Actual grade:  [1]
+Class probabilities:  [[0.4146348 0.5853652]]
+
+Give me a grade 0 or 1:1
+Accuracy after query no. 15: 0.864157
+
+Q:  What is a variable?
+A:  A way to store different values into the program, such as numbers, words, letters, etc.
+Actual grade:  [1]
+Class probabilities:  [[0.35350546 0.64649454]]
+
+Give me a grade 0 or 1:1
+Accuracy after query no. 16: 0.864157
+
+Q:  What is the scope of global variables?
+A:  it is accessible by all functions within a program
+Actual grade:  [1]
+Class probabilities:  [[0.32220545 0.67779455]]
+
+Give me a grade 0 or 1:1
+Accuracy after query no. 17: 0.864157
+
+Q:  What is the role of a prototype program in problem solving?
+A:  Prototype programming is an approach to programming that enables one to take an organized approach to developing an effective program with minimal errors and a strategic pattern when solving a problem. i.e. book gave an example of a costumer withdrawing money from a bank, the approach that was taking on a pseudo code level during the OOA/Design lvl before proceeding into creating a solution. 
+Actual grade:  [0]
+Class probabilities:  [[0.32906042 0.67093958]]
+
+Give me a grade 0 or 1:0
+Accuracy after query no. 18: 0.865794
+
+Q:  What is the role of a prototype program in problem solving?
+A:  To ease the understanding of problem under discussion and to ease the understanding of the program itself
+Actual grade:  [0]
+Class probabilities:  [[0.31941662 0.68058338]]
+
+Give me a grade 0 or 1:0
+Accuracy after query no. 19: 0.867430
+
+Q:  What is the role of a prototype program in problem solving?
+A:  It is used to let the users have a first idea of the completed program and allow the clients to evaluate the program. This can generate much feedback including software specifications and project estimations of the total project.
+Actual grade:  [1]
+Class probabilities:  [[0.49455176 0.50544824]]
+
+Give me a grade 0 or 1:1
+Accuracy after query no. 20: 0.867430
+
+Q:   What are the main advantages associated with object-oriented programming?
+A:  Re-usability  and ease of maintenance
+Actual grade:  [1]
+Class probabilities:  [[0.35838066 0.64161934]]
+
+Give me a grade 0 or 1:1
+Accuracy after query no. 21: 0.867430
+
+Q:  What is the role of a prototype program in problem solving?
+A:  A prototype program is used in problem solving to collect data for the problem.
+Actual grade:  [0]
+Class probabilities:  [[0.32667769 0.67332231]]
+
+Give me a grade 0 or 1:0
+Accuracy after query no. 22: 0.869067
+
+Q:  What is the role of a prototype program in problem solving?
+A:  Defined in the Specification phase a prototype stimulates the behavior of portions of the desired software product.  Meaning, the role of a prototype is a temporary solution until the program itself is refined to be used extensively in problem solving.
+Actual grade:  [1]
+Class probabilities:  [[0.49451433 0.50548567]]
+
+Give me a grade 0 or 1:1
+Accuracy after query no. 23: 0.869067
+
+Q:  What stages in the software life cycle are influenced by the testing stage?
+A:  Removing logical errors, testing for valid data, random data and actual data.
+Actual grade:  [0]
+Class probabilities:  [[0.35447333 0.64552667]]
+
+Give me a grade 0 or 1:0
+Accuracy after query no. 24: 0.870704
+
+Q:  What is typically included in a class definition?
+A:  a constructor and several data members, and at least one public data member or method
+Actual grade:  [1]
+Class probabilities:  [[0.4275981 0.5724019]]
+
+Give me a grade 0 or 1:1
+Accuracy after query no. 25: 0.870704
+
+Q:  What stages in the software life cycle are influenced by the testing stage?
+A:  Refining and possibly the design if the testing phase reveals problems in the design. Production can be affected if the program is unworkable in its current form which will lead to a later production time than originally estimated. Also affects coding because after testing you may need to rewrite the code for the program to remove errors.
+Actual grade:  [1]
+Class probabilities:  [[0.42457685 0.57542315]]
+
+Give me a grade 0 or 1:1
+Accuracy after query no. 26: 0.870704
+
+Q:  When defining a recursive function, what are possible causes for infinite recursion?
+A:  badly designed algorithyms. using recursion for a non recursive problem.
+Actual grade:  [0]
+Class probabilities:  [[0.36335601 0.63664399]]
+
+Give me a grade 0 or 1:0
+Accuracy after query no. 27: 0.872340
+
+Q:  Where are variables declared in a C++ program?
+A:  Globally for an entire program, and locally for individual functions (including FOR statements)
+Actual grade:  [1]
+Class probabilities:  [[0.391877 0.608123]]
+
+Give me a grade 0 or 1:1
+Accuracy after query no. 28: 0.872340
+
+Q:  What is the role of a prototype program in problem solving?
+A:  To lay out the basics and give you a starting point in the actual problem solving.
+Actual grade:  [0]
+Class probabilities:  [[0.34897969 0.65102031]]
+
+Give me a grade 0 or 1:0
+Accuracy after query no. 29: 0.873977
+
+Q:  What is the role of a header-file?
+A:  To allow the compiler to recognize the classes when used elsewhere.
+Actual grade:  [1]
+Class probabilities:  [[0.37594058 0.62405942]]
+
+Give me a grade 0 or 1:1
+Accuracy after query no. 30: 0.873977
+
+Q:  What is typically included in a class definition?
+A:  An object and data.
+Actual grade:  [0]
+Class probabilities:  [[0.36098263 0.63901737]]
+
+Give me a grade 0 or 1:0
+Accuracy after query no. 31: 0.873977
+
+Q:  What is a variable?
+A:  a variable is an object where data is stored.
+Actual grade:  [1]
+Class probabilities:  [[0.51907805 0.48092195]]
+
+Give me a grade 0 or 1:1
+Accuracy after query no. 32: 0.875614
+
+Q:  What is typically included in a class definition?
+A:  the data and methods 
+Actual grade:  [1]
+Class probabilities:  [[0.38901911 0.61098089]]
+
+Give me a grade 0 or 1:1
+Accuracy after query no. 33: 0.875614
+
+Q:  What is the role of a prototype program in problem solving?
+A:  A prototype program is a part of the Specification phase of Software Problem Solvin.  It's employed to illustrate how the key problem or problems will be solved in a program, and sometimes serves as a base program to expand upon.
+Actual grade:  [1]
+Class probabilities:  [[0.35366307 0.64633693]]
+
+Give me a grade 0 or 1:1
+Accuracy after query no. 34: 0.875614
+
+Q:  What is the main advantage associated with function arguments that are passed by reference? 
+A:  gives function ability to access and modify the caller's argument data directly
+Actual grade:  [1]
+Class probabilities:  [[0.33178551 0.66821449]]
+
+Give me a grade 0 or 1:1
+Accuracy after query no. 35: 0.873977
+
+Q:  What is the main difference between a while and a do{\ldots}while statement?
+A:  NO ANSWER
+Actual grade:  [0]
+Class probabilities:  [[0.30746735 0.69253265]]
+
+Give me a grade 0 or 1:0
+Accuracy after query no. 36: 0.877250
+
+Q:  What is the role of a header-file?
+A:  No
+Actual grade:  [0]
+Class probabilities:  [[0.45686145 0.54313855]]
+
+Give me a grade 0 or 1:0
+Accuracy after query no. 37: 0.877250
+
+Q:  When defining a recursive function, what are possible causes for infinite recursion?
+A:  No easily reached base case and no base case at all
+Actual grade:  [1]
+Class probabilities:  [[0.51425004 0.48574996]]
+
+Give me a grade 0 or 1:1
+Accuracy after query no. 38: 0.878887
+
+Q:  When does C++ create a default constructor?
+A:  When there are no arguments passed.
+Actual grade:  [0]
+Class probabilities:  [[0.48288688 0.51711312]]
+
+Give me a grade 0 or 1:0
+Accuracy after query no. 39: 0.878887
+
+Q:  When defining a recursive function, what are possible causes for infinite recursion?
+A:  no base case<br>no change in values.
+Actual grade:  [1]
+Class probabilities:  [[0.48339543 0.51660457]]
+
+Give me a grade 0 or 1:1
+Accuracy after query no. 40: 0.880524
+
+    \end{Verbatim}
+
+    \subsection{Regular supervised task}\label{regular-supervised-task}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}56}]:} \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{model\PYZus{}selection} \PY{k}{import} \PY{n}{train\PYZus{}test\PYZus{}split}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}75}]:} \PY{n}{check\PYZus{}X} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{copy}\PY{p}{(}\PY{n}{X}\PY{p}{)}
+         \PY{n}{check\PYZus{}Y} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{copy}\PY{p}{(}\PY{n}{Y}\PY{p}{)}
+         
+         \PY{n}{X\PYZus{}train}\PY{p}{,}\PY{n}{X\PYZus{}test}\PY{p}{,}\PY{n}{Y\PYZus{}train}\PY{p}{,}\PY{n}{Y\PYZus{}test} \PY{o}{=} \PY{n}{train\PYZus{}test\PYZus{}split}\PY{p}{(}\PY{n}{check\PYZus{}X}\PY{p}{,}\PY{n}{check\PYZus{}Y}\PY{p}{,}\PY{n}{test\PYZus{}size} \PY{o}{=} \PY{l+m+mf}{0.2}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}76}]:} \PY{n}{logisticRegr} \PY{o}{=} \PY{n}{LogisticRegression}\PY{p}{(}\PY{p}{)}
+         \PY{n}{logisticRegr}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{X\PYZus{}train}\PY{p}{,} \PY{n}{Y\PYZus{}train}\PY{p}{)}
+         \PY{n}{score} \PY{o}{=} \PY{n}{logisticRegr}\PY{o}{.}\PY{n}{score}\PY{p}{(}\PY{n}{X\PYZus{}test}\PY{p}{,} \PY{n}{Y\PYZus{}test}\PY{p}{)}
+         
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{score}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+0.8617886178861789
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}77}]:} \PY{n}{supervised\PYZus{}accuracy} \PY{o}{=} \PY{p}{[}\PY{n}{score} \PY{k}{for} \PY{n}{x} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{40}\PY{p}{)}\PY{p}{]}
+         
+         \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{linspace}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{39}\PY{p}{,}\PY{l+m+mi}{40}\PY{p}{)}\PY{p}{,}\PY{n}{supervised\PYZus{}accuracy}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{accuracy\PYZus{}list}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Accuracy after every query}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Query number}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Accuracy}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Supervised}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Active Learning}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{,} \PY{n}{loc}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{lower right}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_12_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}

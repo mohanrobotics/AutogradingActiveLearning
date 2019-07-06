@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sample Site</title>
+    <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+    <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <style>
+    body { padding-top:50px; }
+    .colum {
+    float: center;
+    /* padding: 80px; */
+    height: 250px; /* Should be removed. Only for demonstration */
+    margin-left: auto;
+    margin-right: auto;
+    }
+    .row{
+        padding-top:20px;
+    }
+    .card-title{
+        background-color: #99ccff;
+        border-radius: 10px;
+        position: relative;
+    }
+    .card-title img {
+        margin-left: 10px;
+        width: 170px;
+        height: 170px;
+        margin: -60px 0 -80px 10px;
+    }
+    .card-title h1{
+        margin-left: 40%;
+    }
+
+    #grades
+    {
+        text-align:left;
+        margin-left: auto;
+    }
+    #grades_text,#grades_value
+    {
+        display:inline;
+        /* margin-left: 5px; */
+    }
+
+    #app .line { background-color: blue; height: 1px; border: 0; }
+    #app .box {
+      margin-bottom: 0;
+      border-radius: 0;
+    }
+
+    #app .row{
+        padding-top:20px;
+    }
+    </style>
+
+
+
+</head>
+<body>
+    <div class="container" id="app">
+        <div class="jumbotron">
+            <div v-if="cells.length > 0" class="card">
+                <div class="card-body">
+                   
+
+
+                    <!-- Title -->
+                    <div class="card-title">
+                        <img src= "images/logo.svg" width="100" height="100" style="float: left;" />
+                        <h1>Autograder<small><sub>beta</sub></small></h1>
+                    </div>
+
+                    <!-- Question -->
+                    <div class="row" >
+                        <div class="col-md-12" >
+                            <b> Question :</b>
+                        </div>
+                        <div v-html=currentQuestion.question class="col-md-12">
+                            <p>{{currentQuestion.question}}</p>
+                            <br>
+                        </div>
+                    </div>
+
+                    <!-- template per question -->
+                    <div id="app" class="columns">
+                        <div class="column">
+                            <cells-component v-for="cell in cells" :cell="cell" :key="cell.student_id" />
+
+                        </div>
+                    </div>
+
+                    <div class = "col-md-12">
+                        <!-- <input type="button" value="Submit"> -->
+                        <button v-on:click="check_grade">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash-compat/3.10.2/lodash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js' async></script>
+
+    <script type="text/javascript">
+
+
+            Vue.component('cells-component', {
+              template: `  
+                <div class="cells">
+                  <div class="box"  >
+                        <div class="col-md-12" style="background-color:lightblue">
+                          <p>
+                            {{cell.student_answer}}
+                          </p>
+                        </div>
+
+                        <div class="row" >
+
+                            <div class="col-md-5">
+                                <div id = 'grades_text'>
+                                    <p> <b> Auto-graded Score : {{cell.auto_grade}} </b> &nbsp; </p>
+                                </div>
+
+                                <div v-on:keyup.enter="submit_grade" >
+                                    <!-- <label for="one">One</label> -->
+                                    <b> Manually graded Score : </b> &nbsp;&nbsp;
+                                    <input type="radio" id="zero" value=0  v-model=cell.manual_grade style="height:22px; width:22px; vertical-align: middle;" >
+                                    <label for="zero">0</label> &nbsp;
+                                    <input type="radio" id="one" value=1  v-model=cell.manual_grade style="height:22px; width:22px; vertical-align: middle;" >
+                                    <label for="one">1</label> &nbsp;
+                                    <input type="radio" id="two" value=2 v-model=cell.manual_grade style="height:22px; width:22px; vertical-align: middle;">
+                                    <label for="two">2</label> &nbsp;
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class = "colum" >
+                                    <p> <b> Positive aspects </b> </p>
+                                    <form action="/action_page.php">
+                                          <input type="checkbox" v-model=cell.comment value="Formula correct"> 
+                                          <label for = "Formula correct"> Formula correct <br> </label><br>
+                                          <input type="checkbox" v-model=cell.comment value="First implication correct"> 
+                                          <label for = "First implication correct">First implication correct <br> </label><br>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                               <div class = "colum" >
+                                    <p> <b> Negative aspects </b> </p>
+                                    <form action="/action_page.php">
+                                          <input type="checkbox" v-model=cell.comment value="Wrong Definition"> 
+                                          <label for = "Wrong Definition"> Wrong Definition <br> </label> <br>
+                                          <input type="checkbox" v-model=cell.comment value="Wrong implication"> 
+                                          <label for = "Wrong implication"> Wrong implication <br> </label><br>
+                                          <input type="checkbox" v-model=cell.comment value="Wrong terminology"> 
+                                          <label for = "Wrong terminology"> Wrong terminology <br> </label><br>
+                                          <input type="checkbox" v-model=cell.comment value="Interchange of two things"> 
+                                          <label for = "Interchange of two things"> Interchange of two things <br> </label><br>
+                                          <input type="checkbox" v-model=cell.comment value="Miscalculated"> 
+                                          <label for = "Miscalculated"> Miscalculated <br> </label><br>
+                                          <input type="checkbox" v-model=cell.comment value="Question not understood"> 
+                                          <label for = "Question not understood"> Question not understood <br></label><br>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                  </div>
+                  <hr class="line">
+                </div>  
+              `,
+              props: {
+                cell: Object
+              }
+            });
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                cells : [],
+            },
+            mounted() {
+                let self = this;
+                axios.get("http://localhost:5000/display_data").then((response) => {
+                    console.log(response);
+                    self.cells = response.data;
+                    self.cells["comment"] = []
+
+                });
+            },
+            methods: {
+                    check_grade() {
+                    let self = this;
+                    axios.post('http://localhost:5000/save_grade', {
+                        saved_data: self.cells
+                    })
+                    .then(function (response) {
+                        let data = response.data;
+                        console.log(data.saved_data)
+                        if (data.saved_data) {
+                            axios.get("http://localhost:5000/display_data").then((response) => {
+                                console.log(response);
+                                MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+                                self.cells = response.data;
+                                self.cells["comment"] = []
+                            });
+
+                        }else {
+                                // bootbox.alert("Accuracy is : " + data.accuracy + "%", function() {
+                                //     console.log("Alert Callback");
+                                // });
+                                bootbox.alert("Grading is done! :)", function() {
+                                    console.log("Alert Callback");
+                                });
+                                // self.loadQuestion();
+                                // alert("Accuracy is : " + data.accuracy);
+                            }
+                    })
+                    
+                }
+
+            },
+            computed: {
+                currentQuestion() {
+                    MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+                    return this.cells[0];
+                },
+
+            }
+        });
+    </script>
+
+</body>
+</html>

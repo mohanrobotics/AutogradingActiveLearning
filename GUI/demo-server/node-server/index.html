@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sample Site</title>
+    <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+    <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <style>
+    body { padding-top:50px; }
+    .colum {
+    float: center;
+    /* padding: 80px; */
+    height: 250px; /* Should be removed. Only for demonstration */
+    margin-left: auto;
+    margin-right: auto;
+    }
+    .row{
+        padding-top:20px;
+    }
+    .card-title{
+        background-color: #99ccff;
+        border-radius: 10px;
+        position: relative;
+    }
+    .card-title img {
+        margin-left: 10px;
+        width: 170px;
+        height: 170px;
+        margin: -60px 0 -80px 10px;
+    }
+    .card-title h1{
+        margin-left: 40%;
+    }
+
+    #grades
+    {
+        text-align:left;
+        margin-left: auto;
+    }
+    #grades_text,#grades_value
+    {
+        display:inline;
+        /* margin-left: 5px; */
+    }
+
+    </style>
+
+
+
+</head>
+<body>
+    <div class="container" id="app">
+        <div class="jumbotron">
+            <div v-if="cells.length > 0" class="card">
+                <div class="card-body">
+                    <div class="card-title">
+                        <img src= "images/logo.svg" width="100" height="100" style="float: left;" />
+                        <h1>Autograder<small><sub>beta</sub></small></h1>
+                    </div>
+                    <div class="row" >
+                        <div class="col-md-12" >
+                            <b> Question :</b>
+                        </div>
+                        <div v-html=currentQuestion.question class="col-md-12">
+                            <p>{{currentQuestion.question}}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <b> Answer : </b>
+                        </div>
+                        <div v-html=currentQuestion.answer class="col-md-12">
+                            <p> {{currentQuestion.answer}}</p>
+                        </div>
+                    </div>
+<!--                     <div class="row" id = 'grades' >
+                        <div  id = 'grades_text' >
+                            <p> <b> Auto-graded Score :  &nbsp; </p>
+                        </div>
+                        <div  id = 'grades_value'  v-html=currentQuestion.auto_grade>
+                            <p> {{currentQuestion.auto_grade}} </p>
+                        </div>
+                    </div> -->
+                        <!-- <div class="col-md-12"> -->
+                            <!-- <p> <b> Manually graded Score : </b> {{currentQuestion.score}}</p> -->
+                            <!-- <p> <b> Manually graded Score : </b> -->
+                            <!-- <select v-model="manual_grade"> -->
+                              <!-- <option value="0">0</option> -->
+                              <!-- <option value="1">1</option> -->
+                              <!-- <option value="2">2</option> -->
+                              <!-- <option value="3">3</option> -->
+                              <!-- <option value="4">4</option> -->
+                              <!-- <option value="5">5</option> -->
+                            <!-- </select> -->
+                            <!-- </p> -->
+                        <!-- </div> -->
+                    <div class="row" >
+                        <div v-on:keyup.enter="submit_grade" class="col-md-12">
+                            <!-- <label for="one">One</label> -->
+                            <p> <b> Manually graded Score : </b> &nbsp;&nbsp;
+                            <input type="radio" id="zero" value="0"  v-model="manual_grade" style="height:22px; width:22px; vertical-align: middle;">
+                            <label for="zero">0</label> &nbsp;
+                            <input type="radio" id="one" value="1" v-model="manual_grade" style="height:22px; width:22px; vertical-align: middle;">
+                            <label for="one">1</label> &nbsp;
+                            <input type="radio" id="two" value="2" v-model="manual_grade" style="height:22px; width:22px; vertical-align: middle;">
+                            <label for="two">2</label> &nbsp;
+<!--                             <input type="radio" id="three" value="3" v-model="manual_grade" style="height:22px; width:22px; vertical-align: middle;">
+                            <label for="three">3</label> &nbsp;
+                            <input type="radio" id="four" value="4" v-model="manual_grade" style="height:22px; width:22px; vertical-align: middle;">
+                            <label for="four">4</label> &nbsp;
+                            <input type="radio" id="five" value="5" v-model="manual_grade" style="height:22px; width:22px; vertical-align: middle;">
+                            <label for="five">5</label> -->
+                        </div>
+
+
+                    </div>
+<!--                     <div>
+                        <p> <b>Feedback :</b> </p> <br>
+                    </div> -->
+<!--                     <div class="row">
+                        <div class = "colum" >
+                            <p> <b> Add new feedback </b> </p>
+                            <input type="text" name="Positive" value="">
+                             <button type="button">+</button>
+                             <button type="button">-</button>
+                        </div>
+                        <div class = "colum" >
+                            <p> <b> Positive aspects </b> </p>
+                            <form action="/action_page.php">
+                                  <input type="checkbox" name="vehicle1" value="Bike"> Formula correct <br>
+                                  <input type="checkbox" name="vehicle3" value="Boat"> First implication correct <br><br>
+                            </form>
+                        </div>
+                        <div class = "colum" >
+                            <p> <b> Negative aspects </b> </p>
+                            <form action="/action_page.php">
+                                  <input type="checkbox" name="vehicle1" value="Bike"> Wrong Definition <br>
+                                  <input type="checkbox" name="vehicle2" value="Car"> Wrong implication <br>
+                                  <input type="checkbox" name="vehicle2" value="Car"> Wrong terminology <br>
+                                  <input type="checkbox" name="vehicle2" value="Car"> Interchange of two things <br>
+                                  <input type="checkbox" name="vehicle2" value="Car"> Miscalculated <br>
+                                  <input type="checkbox" name="vehicle3" value="Boat"> Question not understood <br><br>
+                            </form>
+                        </div>
+                    </div> -->
+                    <div class = "col-md-12">
+                        <!-- <input type="button" value="Submit"> -->
+                        <button v-on:click="submit_grade">Submit</button>
+                    </div>
+                    <div>
+                        <br>
+                    </div>
+                    <div class="row">
+                        <div class="btn-group pull-left col-md-12">
+                            <button v-if="currentIndex != 0" type="button" class="btn btn-primary" @click="previousQuestion(currentIndex)">previous</button>
+                            <button v-if="currentIndex != cells.length-1" type="button" class="btn btn-primary" @click="nextQuestion(currentIndex)">next</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash-compat/3.10.2/lodash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js' async></script>
+
+    <script type="text/javascript">
+
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                cells : [],
+                manual_grade : 0,
+                // query_idx : 0
+            },
+            mounted() {
+                this.loadQuestion();
+                // let self = this;
+                // axios.get("http://localhost:5000/get_question").then((response) => {
+                //     console.log(response.data);
+                //     self.cells = response.data;
+                // });
+            },
+            methods: {
+                nextQuestion(currentIndex){
+                    this.cells[currentIndex].current = false;
+                    this.cells[currentIndex + 1].current = true;
+
+                },
+                previousQuestion(currentIndex){
+                    this.cells[currentIndex].current = false;
+                    this.cells[currentIndex - 1].current = true;
+                },
+                submit_grade(){
+                    let self = this;
+                    axios.post('http://localhost:5000/label_grade', {
+                        manual_grade: this.manual_grade,
+                        query_idx: self.cells[0].query_idx
+                    })
+                    .then(function (response) {	
+                        let data = response.data;
+                        if (data.success) {
+                        	if (self.isLastQuestion) {
+                        		window.location.href = "http://localhost:8080/newhtml";
+                        		return;
+                        	}
+                            if (data.next_question) {
+                                self.loadQuestion();
+                            } else {
+                                // bootbox.alert("Accuracy is : " + data.accuracy + "%", function() {
+                                //     console.log("Alert Callback");
+                                // });
+                                bootbox.alert("Grading is done! :)", function() {
+                                    console.log("Alert Callback");
+                                });
+                                // self.loadQuestion();
+                                // alert("Accuracy is : " + data.accuracy);
+                            }
+                        }
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+                },
+                loadQuestion() {
+                    let self = this;
+                    axios.get("http://localhost:5000/get_question").then((response) => {
+                        console.log(response);
+                        self.cells = response.data;
+                        if (self.cells[0].auto_grade_train_flag) {
+                            self.manual_grade = 0
+                        } else {
+                            self.manual_grade = self.cells[0].auto_grade;
+                        }
+
+                    }).catch(function(error){
+                    	console.log(error);
+                    });
+                }
+            },
+            computed: {
+                currentQuestion() {
+                    MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+                    console.log(_.find(this.cells, 'current').question);
+                    return _.find(this.cells, 'current');
+                },
+                currentIndex(){
+                    MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+
+                    return _.findIndex(this.cells, 'current')
+                },
+                isLastQuestion(){
+                	return this.cells[0].is_last_qn;
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>

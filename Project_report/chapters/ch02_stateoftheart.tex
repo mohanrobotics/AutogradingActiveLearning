@@ -1,0 +1,91 @@
+%!TEX root = ../report.tex
+
+\begin{document}
+\chapter{Related Work}
+
+\section{Automated Short Answer Grading (ASAG)}
+	
+\subsection{Concept mapping based methods:}
+
+Concept mapping based techniques segments student answers into different concepts and the score is given based on the presence of concepts in the reference answer. \cite{Burrows2015}
+
+
+\begin{itemize}
+	\item Callear et al.(2001) \cite{Callear2001}    developed a  computer-assisted assessment (CAA) termed as Automated Text Marker (ATM). ATM computes the student grade based on the number of matching concepts between the student and reference answer where the concepts are given certain weight based on their importance.
+	
+	
+	\item Leacock et al. (2003)\cite{Leacock2003} developed an automated scoring system called C-rater for ETS(Educational Testing Service). C-rater generates model sentences based on the concepts from the student and the reference answer. The model sentences undergo linguistic processing using Natural Language Processing(NLP) tools and then scored based on the availability of the expected concepts. 
+	
+\end{itemize}
+
+\subsection{Information extraction based methods:}
+
+Information extraction systems extract a pattern from the student and the reference answers. Patterns from reference answers are kept as a template(parse trees, regular expression) and are matched with the patterns from student answers. \cite{Burrows2015}.
+
+
+\begin{itemize} 
+	
+	\item Bachman et al. (2002) \cite{Bachman2002} developed a short answer scoring system called WebLAS. Teachers' answers are converted into significant segments from parsed representation. These converted segments are assigned specific weights based on their importance confirmed by the teachers. Grades are given then based on the regular expression matching.
+	
+	\item Mitchelle et al. (2002) \cite{Mitchell2002} discuss a software called AutoMark. AutoMark assigns a grade based on matching the mark scheme templates obtained from the parse tree representation.
+	
+	\item Oxford UCLES,\cite{Pulman2005} another information extraction short scoring system that works based on hand-crafted pattern matching. These patterns are provided by the human experts of the particular domain. \cite{Pulman2005} also compares handcrafted patterns with the patterns extracted through machine learning techniques and claims that the handcrafted patterns work better. 
+	
+	\item Jordan and Mitchell (2009) \cite{Jordan2009} developed a graphical user interface(FreeText Author) for short answer grading. The teacher provides the reference answers and keywords in the GUI. The keywords also mostly associated with their synonyms. Based on these inputs, a template is generated using NLP techniques and are matched with the student answer to compute the grade. Since the templates are obtained using NLP techniques, the teachers are not required to have much knowledge of NLP.
+	
+	\item Raheel Siddiqi (2010)\cite{Siddiqi2010} proposes a grading system. This system works by matching the specified structure of the student and the teacher answer. These structures are created based on the content of the answers by "structure  editor." These structures are specified using question answer markup language (QAML).
+	
+	\item Meurers et al. (2011) \cite{Meurers2011} and Hahn et al. (2012) \cite{Hahn2012} developed a short answer scoring system where the scores are provided based on the matching of an abstract representation of the text obtained by Lexical Resource Semantics (LRS) method. The abstract representations were converted into graphs before matching. 
+	
+	\item Ramachandran et al. (2015) \cite{Ramachandran2015} developed a short answer scoring system based on the pattern matching where the patterns were extracted automatically from word-order graphs and lexico-semantic matching methods. Patterns were not only extracted from the teacher's answer but also the best student's response. 
+	
+\end{itemize}	 
+
+\subsection{Corpus based methods:}
+
+Corpus-based are statistical methods where a big corpus (Wikipedia, Google, etc.,) is used to obtain information such degree of similarity, synonyms, etc., It is useful in short answer grading as it is helpful in detecting paraphrasing of reference answers.\cite{Burrows2015}. These methods have played a vital role in automated essay scoring is now also used in ASAG.
+
+\begin{itemize}
+	
+	\item Nielsen et al., (2009) \cite{Nielsen2009} developed a dependency-based classification component called Intelligent Tutoring System. Here the features used for machine learning were obtained using the lexical corporal statistics. 
+	
+	
+	
+	\item Mohler and Mihalcea (2009) \cite{Mohler2009}
+	computed score based on the similarity between student and reference answer. The main contribution of this work is the comparison between the similarity obtained using eight knowledge and two corpus-based methods. The influence of size and the domain of the corpus is also analyzed.The authors claim that corpus domain plays a vital role than the size of corpus while obtaining the similarity.
+	
+	
+	\item Gomaa and Fahmy (2012) \cite{Gomaa2012} compares string similarity and corpus-based similarity for the task of automatic short answer grading. This work also examines the significance of two big corpora. The authors also suggest that the short answer grading could be interpreted as a similarity task.
+	
+	
+\end{itemize}
+
+
+\subsection{Machine learning based methods:}
+
+Machine learning based approaches refers to training a model utilizing the features extracted using  natural language processing techniques \cite{Burrows2015}.
+
+\begin{itemize}
+	\item Mohler et al. (2011) \cite{Mohler2011} uses the similarity approach from his previous work \cite{Mohler2009} along with graph alignment features to train a machine learning model for ASAG. The authors claim that by using both the semantic and graph alignment features helps in grading the student answers more efficiently. Dependency graphs of both student and reference answers help in constructing a structural component for automatic grading.
+	
+	
+	\item Sultan et al. \cite{Sultan2016} used features such as word alignment, embeddings, question demoting, term weighting and length ratio extracted from the student and the reference responses for training a supervised model. Both regression and classification were performed in two different datasets respectively. The trained supervised model is used to assign grades to the student answers.
+	
+	\item Zesch et al. (2015) \cite{zesch2015}  used unsupervised machine learning method for grading the student answers. Students answers were clustered using a k-means clustering algorithm, and the human-provided the labels. This clustering model was used to predict the grades.
+	
+	\item Basu et al. (2013) \cite{Basu2013} developed an approach termed as "Powergrading." Powergrading groups the student answers into clusters and sub-clusters. This helps the teacher to grade a bunch of answers at a time and also helps in understanding the common mistakes or misconceptions made by the students. Grouping the answers also helps in giving effective feedback for the whole group.
+	
+\end{itemize}
+
+\section{Active learning in the context of  Natural language processing}
+
+\begin{itemize}
+  \item Dmitriy et al. (2011) \cite{dligach2011} developed an unsupervised language model and incorporated active learning strategies for sampling instead of random sampling to increase the learning rate. It was proved that active learning helps in capturing rare classes and was used in word sense disambiguation.
+  
+  \item Rosa et al. (2012) \cite{figueroa2012} used active learning for the task of text classification and claims that active learning helps in achieving the same performance compared to passive learning with much lesser training data. Distance-based sampling and Diversity based sampling was used in this task.
+  
+  \item Andrew et al. (1998) \cite{mccallumzy1998} incorporated active learning with Expectation Maximization(EM) to circumvent the use of large dataset. By labeling 50\% of the data, the authors achieved the same level of accuracy achieved by training with the complete labeled dataset. 
+  
+  \item Simon et al. (2002)\cite{tong2001} discussed standard inductive and transductive settings of active learning. In the task of text classification using support vector machines, it was proved that by using active learning the effort of labeling was drastically reduced in both the standard transductive and inductive settings.
+\end{itemize}
+\end{document}

@@ -1,0 +1,119 @@
+%
+% LaTeX2e Style for MAS R&D and master thesis reports
+% Author: Argentina Ortega Sainz, Hochschule Bonn-Rhein-Sieg, Germany
+% Please feel free to send issues, suggestions or pull requests to:
+% https://github.com/mas-group/project-report
+% Based on the template created by Ronni Hartanto in 2003
+%
+
+%\documentclass[thesis]{mas_report}
+ \documentclass[rnd]{mas_report}
+%\setlength{\@fptop}{0pt}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{multirow}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{tikz}
+\usepackage[counterclockwise, figuresright]{rotating}
+% Colors
+\definecolor{hbrs}{RGB}{1,106,186}
+
+\definecolor{keywords}{RGB}{0,100,0}
+\definecolor{comments}{RGB}{0,100,50}
+\definecolor{stringred}{RGB}{0,170,254}
+\definecolor{codeblue}{RGB}{0,0,150}
+
+\hypersetup{
+	colorlinks=true,
+	linkcolor=hbrs,
+	citecolor=keywords,
+	linkbordercolor=0 1 1,
+	filecolor=codeblue,      
+	urlcolor=stringred,
+}
+
+%\hypersetup{%
+%	colorlinks=true,
+%	citecolor=green,
+%	anchorcolor=blue,
+%	colorlinks=false,
+%	linkcolor={blue},
+%	urlcolor={blue},
+%	raiselinks=false
+%}
+
+% ****************************************************
+% THIS INFORMATION SHOULD BE UPDATED FOR YOUR REPORT
+% ****************************************************
+\author{Mohandass Muthuraja \\ Jeeveswaran Kishaan}
+\title{Evaluation of Active Learning for Short Answer Grading}
+\supervisors{%
+Prof. Dr. Paul G. Pl{\"o}ger\\
+M. Sc. Deebul Nair
+}
+\date{January 2019}
+
+
+% \thirdpartylogo{path/to/your/image}
+
+\begin{document}
+\frontmatter
+
+\begin{titlepage}
+    \maketitle
+\end{titlepage}
+
+%----------------------------------------------------------------------------------------
+%	PREFACE
+%----------------------------------------------------------------------------------------
+\pagestyle{plain}
+\cleardoublepage
+\statementpage
+
+\subfile{chapters/abstract}
+\subfile{chapters/acknowledgment}
+
+\tableofcontents
+\listoffigures
+\listoftables
+
+\subfile{chapters/contribution}
+
+%-------------------------------------------------------------------------------
+%	CONTENT CHAPTERS
+%-------------------------------------------------------------------------------
+\mainmatter % Begin numeric (1,2,3...) page numbering
+
+\pagestyle{mainmatter}
+
+\subfile{chapters/ch01_introduction}
+\subfile{chapters/ch02_stateoftheart}
+\subfile{chapters/ch02_nlp}
+\subfile{chapters/ch03_al}
+%\subfile{chapters/ch03_methodology}
+\subfile{chapters/ch04_solution}
+\subfile{chapters/ch05_evaluation}
+\subfile{chapters/ch08_gui}
+%\subfile{chapters/ch06_results}
+\subfile{chapters/ch07_conclusion}
+
+%%-------------------------------------------------------------------------------
+%%	APPENDICES
+%%-------------------------------------------------------------------------------
+%\begin{appendices}
+%    \subfile{chapters/appendix}
+%\end{appendices}
+%
+%\backmatter
+
+%-------------------------------------------------------------------------------
+%	BIBLIOGRAPHY
+%-------------------------------------------------------------------------------
+\addcontentsline{toc}{chapter}{References}
+\bibliographystyle{plainnat} % Use the plainnat bibliography style
+\bibliography{bibliography.bib} % Use the bibliography.bib file as the source of references
+
+\end{document}

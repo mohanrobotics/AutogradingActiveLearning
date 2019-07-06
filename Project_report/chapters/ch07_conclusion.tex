@@ -1,0 +1,45 @@
+%!TEX root = ../report.tex
+
+\begin{document}
+    \chapter{Conclusions}
+
+    \section{Contributions}
+    
+	The main contributions of this work can be enumerated as follows;
+	
+	\begin{enumerate}
+		\item A detailed study and evaluation of different active learning strategies, features extracted from the student answers, machine learning models and active learning settings on three different datasets. 
+		
+		\item A web-based graphical user interface (GUI) which can be used for the task of grading the answers with the help of active learning. This system is flexible as it can work with different machine learning classifiers, and different active learning settings on the students' answers in a Jupyter notebook format. With little modifications it could be fit to work on any dataset in a csv or Pandas dataframe format. This will be made available as an open-source project to which future researchers can contribute or make use of.
+		
+		\item Mohler'11, Neural network, and SemEval 2013 datasets were cleaned in preparation to be used in a classifier and features such as word embeddings, cosine similarity between student and reference answers, aligned words, length ratio, bag of words, and tf-idf were also added. These datasets are available in csv, and Pandas Dataframe formats which could be used in future research works.
+	\end{enumerate}
+
+    \section{Lessons learned}
+    
+    We overcame many challenges during the implementation of this project. These are enumerated below.
+    
+    \begin{enumerate}
+    	\item Answers with more latex codes were difficult to make sense of, and this affected the performance a lot.
+    	
+    	\item Questions with answers in English and German languages made extracting features more complex as the new German words would add to the dimensions of bag of words and tf-idf encodings which is of insignificant use. 
+    	
+    	\item It was hard to suggest a single active learning setting which would work for different datasets. Different combinations of query strategies and machine learning models worked well on different datasets and this made it finalizing a single best setting.
+    \end{enumerate}
+
+    \section{Future work}
+    
+    During the period of our research, we realized many avenues to be explored in every stages of the experimental pipeline, which are listed below.
+    
+    \begin{enumerate}
+    	\item Features are an imperative aspect of any machine learning task. Thus, the best features to be extracted for better performance of the grading system is still an open research area. Features such as sentence embeddings and latex embeddings could be a good place to start while thinking of feature engineering. Making sense of latex codes proves vital for the performance of math related assessment answers. Active learning can achieve the supervised learning's performance using lesser data when better features are used for learning. 
+    	
+    	\item Efficient active learning strategies to deal with class imbalance is an active research topic. As skewed grade distribution is ubiquitous in most of the real world scenarios, better active learning settings to deal with such skewness could be looked into as a solution for better performance.
+    	
+    	\item An efficient method for giving feedbacks should be worked on. The current version enables the grader to give feedbacks one by one. Clustering the similar answers and giving the same feedback to all of them would be a better choice and would reduce the effort of the grader.
+    	
+    	\item More functionalities could be added to the GUI according to the users' requirements. The current version is a basic one which concentrates on giving the best possible grades for the answers. The design of the interface could be optimized for simpler use.
+    \end{enumerate}
+    
+    
+\end{document}

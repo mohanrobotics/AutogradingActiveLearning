@@ -1,0 +1,76 @@
+[NotebookApp | WARNING] No nbgrader_config.py file found (rerun with --debug to see where nbgrader is looking)
+[NotebookApp | INFO] Loading the validate_assignment nbgrader serverextension
+[NotebookApp | INFO] Serving notebooks from local directory: /home/mohandass/Documents/R&D/Interactive-short-answer-grading/codes
+[NotebookApp | INFO] The Jupyter Notebook is running at:
+[NotebookApp | INFO] http://localhost:8888/?token=573353558337c9970bcec503f44bbd839d87d7a251d1b4d0
+[NotebookApp | INFO] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
+[NotebookApp | CRITICAL] 
+    
+    Copy/paste this URL into your browser when you connect for the first time,
+    to login with a token:
+        http://localhost:8888/?token=573353558337c9970bcec503f44bbd839d87d7a251d1b4d0
+[NotebookApp | INFO] Accepting one-time-token-authenticated connection from 127.0.0.1
+[NotebookApp | INFO] Kernel started: 8a1c33c5-f1b1-4762-bd05-2f3c3ad656e8
+[NotebookApp | INFO] Adapting to protocol v5.1 for kernel 8a1c33c5-f1b1-4762-bd05-2f3c3ad656e8
+[NotebookApp | INFO] Saving file at /feature_creation.ipynb
+[NotebookApp | INFO] Kernel started: 5965d4cf-4c28-4818-ae0a-60a52503cf8c
+[NotebookApp | INFO] Adapting to protocol v5.1 for kernel 5965d4cf-4c28-4818-ae0a-60a52503cf8c
+[NotebookApp | INFO] Saving file at /feature_creation.ipynb
+[NotebookApp | INFO] Saving file at /feature_creation.ipynb
+[NotebookApp | INFO] Saving file at /feature_creation.ipynb
+[NotebookApp | INFO] Saving file at /feature_creation.ipynb
+[NotebookApp | INFO] Saving file at /feature_creation.ipynb
+[NotebookApp | INFO] Saving file at /feature_creation.ipynb
+[NotebookApp | INFO] Saving file at /feature_creation.ipynb
+[NotebookApp | INFO] Saving file at /feature_creation.ipynb
+[NotebookApp | INFO] Saving file at /feature_creation.ipynb
+[NotebookApp | INFO] Saving file at /feature_creation.ipynb
+[NotebookApp | INFO] Saving file at /feature_creation.ipynb
+[NotebookApp | INFO] Saving file at /feature_creation.ipynb
+[NotebookApp | INFO] Saving file at /feature_creation.ipynb
+[NotebookApp | INFO] Saving file at /feature_creation.ipynb
+[NotebookApp | INFO] Saving file at /feature_creation.ipynb
+[NotebookApp | INFO] Saving file at /feature_creation.ipynb
+[NotebookApp | INFO] Saving file at /feature_creation.ipynb
+[NotebookApp | INFO] Saving file at /feature_creation.ipynb
+[NotebookApp | INFO] Saving file at /feature_creation.ipynb
+[NotebookApp | INFO] Saving file at /feature_creation.ipynb
+[NotebookApp | INFO] Saving file at /feature_creation.ipynb
+[NotebookApp | INFO] Saving file at /feature_creation.ipynb
+[NotebookApp | INFO] Saving file at /feature_creation.ipynb
+[NotebookApp | INFO] Saving file at /feature_creation.ipynb
+[NotebookApp | INFO] Saving file at /feature_creation.ipynb
+[NotebookApp | INFO] Saving file at /feature_creation.ipynb
+[NotebookApp | INFO] Saving file at /feature_creation.ipynb
+[NotebookApp | INFO] Saving file at /feature_creation.ipynb
+[NotebookApp | INFO] Saving file at /feature_creation.ipynb
+[NotebookApp | INFO] Saving file at /feature_creation.ipynb
+[NotebookApp | INFO] Saving file at /feature_creation.ipynb
+[NotebookApp | INFO] Saving file at /feature_creation.ipynb
+[NotebookApp | INFO] Saving file at /feature_creation.ipynb
+[NotebookApp | INFO] Saving file at /feature_creation.ipynb
+[NotebookApp | INFO] Saving file at /feature_creation.ipynb
+[NotebookApp | INFO] Saving file at /feature_creation.ipynb
+[NotebookApp | WARNING] WebSocket ping timeout after 108305 ms.
+[NotebookApp | INFO] Starting buffering for 5965d4cf-4c28-4818-ae0a-60a52503cf8c:fc79a807b99740d1acc29ac0660800d4
+[NotebookApp | WARNING] WebSocket ping timeout after 100094 ms.
+[NotebookApp | INFO] Starting buffering for 8a1c33c5-f1b1-4762-bd05-2f3c3ad656e8:9ec4b7f52c704044ab5a5aec8bb7ff0f
+[NotebookApp | INFO] Saving file at /feature_creation.ipynb
+[NotebookApp | INFO] Saving file at /feature_creation.ipynb
+[NotebookApp | INFO] Adapting to protocol v5.1 for kernel 8a1c33c5-f1b1-4762-bd05-2f3c3ad656e8
+[NotebookApp | INFO] Restoring connection for 8a1c33c5-f1b1-4762-bd05-2f3c3ad656e8:9ec4b7f52c704044ab5a5aec8bb7ff0f
+[NotebookApp | INFO] Replaying 2 buffered messages
+[NotebookApp | INFO] Saving file at /feature_creation.ipynb
+[NotebookApp | INFO] Kernel interrupted: 8a1c33c5-f1b1-4762-bd05-2f3c3ad656e8
+[NotebookApp | INFO] Kernel interrupted: 8a1c33c5-f1b1-4762-bd05-2f3c3ad656e8
+[NotebookApp | INFO] Kernel interrupted: 8a1c33c5-f1b1-4762-bd05-2f3c3ad656e8
+[NotebookApp | INFO] Kernel interrupted: 8a1c33c5-f1b1-4762-bd05-2f3c3ad656e8
+[NotebookApp | INFO] Saving file at /feature_creation.ipynb
+[NotebookApp | INFO] Saving file at /feature_creation.ipynb
+[NotebookApp | INFO] Saving file at /feature_creation.ipynb
+[NotebookApp | INFO] Starting buffering for 8a1c33c5-f1b1-4762-bd05-2f3c3ad656e8:9ec4b7f52c704044ab5a5aec8bb7ff0f
+[NotebookApp | INFO] interrupted
+[NotebookApp | CRITICAL] Shutdown confirmed
+[NotebookApp | INFO] Shutting down 2 kernels
+[NotebookApp | INFO] Kernel shutdown: 8a1c33c5-f1b1-4762-bd05-2f3c3ad656e8
+[NotebookApp | INFO] Kernel shutdown: 5965d4cf-4c28-4818-ae0a-60a52503cf8c
