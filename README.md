@@ -22,13 +22,9 @@ The codes in this project can be run by setting up a python environment rnd_env.
 cd ./GUI/node-server/
 node server.js
 ```
-In seperate terminal 
+In seperate terminal run the following.
 ```
 conda env create -f rnd_env.yml
-conda activate rnd_env
-```
-```
-cd ./GUI/
 conda activate rnd_env
 python3 auto_grader.py 
 ```
